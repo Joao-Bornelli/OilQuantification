@@ -1,0 +1,12 @@
+names:
+  - Oil
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: oildetection-94gzt
+  url: https://universe.roboflow.com/oilvisualization/oildetection-94gzt/dataset/4
+  version: 4
+  workspace: oilvisualization
+test: C:\Users\joaobo\Documents\OilVisualization\OilDetection-4\test\images
+train: C:\Users\joaobo\Documents\OilVisualization\OilDetection-4\train\images
+val: C:\Users\joaobo\Documents\OilVisualization\OilDetection-4\valid\images
