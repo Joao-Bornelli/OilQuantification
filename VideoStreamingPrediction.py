@@ -11,7 +11,7 @@ model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\runs\runs\segment\tra
 model.to('cuda')
 
 
-prediction = model.predict(path,stream=True,visualize=True)
+prediction = model.predict(path,stream=True)
 
 oilNumber = []
 for p in prediction:
@@ -28,7 +28,9 @@ for p in prediction:
     mean = int(masked.mean()*1000)
     oilNumber.append(mean)
     cv.imshow("frame",masked)
-    cv.waitKey(1)
+    key = cv.waitKey(1)
+    if(key == ord('q')):
+        break
 
 DataFrame(oilNumber).to_csv(videoName + '.csv')
 cv.destroyAllWindows()
