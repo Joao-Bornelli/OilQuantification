@@ -1,0 +1,12 @@
+names:
+  - oil
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: testes-zaytx
+  url: https://universe.roboflow.com/oilvisualization/testes-zaytx/dataset/1
+  version: 1
+  workspace: oilvisualization
+test: C:\Users\joaobo\Documents\OilQuantification\testes-1\test\images
+train: C:\Users\joaobo\Documents\OilQuantification\testes-1\train\images
+val: C:\Users\joaobo\Documents\OilQuantification\testes-1\valid\images
