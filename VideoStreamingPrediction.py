@@ -7,7 +7,7 @@ import numpy as np
 path = r'C:\Users\joaobo\Videos\FMS K9 TEST#41_Cropped.mp4'
 videoName = path.split('\\')[-1][:-4]
 
-model = YOLO(r'C:\Users\joaobo\Documents\OilVisualization\runs\Segment More Images\segment\train2\weights\best.pt')
+model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\runs\runs\segment\train2\weights\best.pt')
 model.to('cuda')
 
 
