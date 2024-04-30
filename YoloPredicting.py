@@ -32,9 +32,6 @@ frameNum = 0
 
 fig, ax = plt.subplots()
 
-# file = open(Pimentao23
-# videoName + '.csv','a')
-# file.write('x,y 
 while True:
     ret,frame = cap.read()
     if ret:
@@ -46,10 +43,8 @@ while True:
 
         prediction = model.predict(frame)
         
-        
         frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
         height, width = frame.shape[:2]
-        
         
         masked = np.zeros((height, width), dtype=np.uint8)
         
@@ -60,31 +55,20 @@ while True:
         else:
             masked_bgr = np.zeros((height, width), dtype=np.uint8)
             
-        # print(masked_bgr.shape[:])
-
-        # stacked = np.hstack([frame, masked_bgr])
         cv.imshow('original',frame)
         cv.imshow('found',masked_bgr)
         mean = np.round(masked_bgr.mean(),3)
         
-        
-        # file.write(f'\n {int((cap.get(cv.CAP_PROP_POS_FRAMES)/30))*1000},{int(mean*1000)}')
-        
         oilNumber['x'].append(int((cap.get(cv.CAP_PROP_POS_FRAMES)/60))*1000)
         oilNumber['y'].append(int(mean*1000))
-        # cv.waitKey(100)
-        
+
         frameNum += 5
         cap.set(cv.CAP_PROP_POS_FRAMES,frameNum)
-        
-        # showGraph(ax,oilNumber['x'],oilNumber['y'])
     else:
         break
-    
-# file.close()
+
 DataFrame(oilNumber).to_csv(videoName + '.csv')
 
-# plt.show()
 plt.close()
     
 cap.release()

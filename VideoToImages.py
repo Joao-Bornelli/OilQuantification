@@ -2,13 +2,9 @@ import numpy as np
 import cv2 as cv
 
 videoPath = r'C:\Users\joaobo\Videos\No oil_Cropped.mp4'
-
 imagesPath = r'C:\Users\joaobo\Pictures\Images'
 
-
 cap = cv.VideoCapture(videoPath)
-
-# print(cap.get(cv.CAP_PROP_FPS))
 
 if not cap.isOpened():
     print('error')
