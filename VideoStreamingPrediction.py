@@ -3,7 +3,7 @@ from pandas import DataFrame
 from ultralytics import YOLO 
 import cv2 as cv
 import numpy as np
-import cropVideo
+import movingAvg
 
 path = r'C:\Users\joaobo\Videos\No oil_Cropped.mp4'
 videoName = path.split('\\')[-1][:-4]
@@ -43,5 +43,5 @@ for p in prediction:
 
 DataFrame(oilNumber).to_csv(videoName + '.csv')
 
-cropVideo.movingAVG(videoName + '.csv')
+movingAvg.movingAVG(videoName + '.csv')
 cv.destroyAllWindows()
