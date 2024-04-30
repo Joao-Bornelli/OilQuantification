@@ -3,13 +3,13 @@ from pandas import DataFrame
 from ultralytics import YOLO 
 import cv2 as cv
 import numpy as np
+import torch
 
 path = r'C:\Users\joaobo\Videos\FMS K9 TEST#41_Cropped.mp4'
 videoName = path.split('\\')[-1][:-4]
 
 model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\runs\runs\segment\train2\weights\best.pt')
 model.to('cuda')
-
 
 prediction = model.predict(path,stream=True)
 
@@ -22,12 +22,21 @@ for p in prediction:
     if p.masks != None:
         for mask in p.masks.xy:
             masked = cv.fillConvexPoly(masked,points=np.array(mask).astype(int),color=(255,0,0))
+            # masked = cv.fillPoly(masked, pts=[np.array(mask).astype(int)], color=(255,0,0))
     else:
         masked = np.zeros((height, width), dtype=np.uint8)# Masks object for segment masks outputs
     
     mean = int(masked.mean()*1000)
     oilNumber.append(mean)
-    cv.imshow("frame",masked)
+    # cv.imshow("frame",masked)
+
+    mask = cv.threshold(masked, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)[1]
+    
+    frame[mask==255] = (36,255,12)
+    
+    cv.imshow("frame",frame)
+    
+    
     key = cv.waitKey(1)
     if(key == ord('q')):
         break
