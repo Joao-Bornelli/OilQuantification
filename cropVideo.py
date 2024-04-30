@@ -18,7 +18,7 @@ width,height = roi[2],roi[3]
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 out = cv2.VideoWriter(videoName,fourcc,60, (width,height))
 
-
+print('Cropping Video...')
 while True:
     ret,frame = cap.read()
     if ret:
@@ -34,7 +34,7 @@ while True:
             break
     else:
         break
-
+print('Done!')
 cap.release()
 out.release()
 cv2.destroyAllWindows()
