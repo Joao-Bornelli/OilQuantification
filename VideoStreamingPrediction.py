@@ -5,18 +5,19 @@ import cv2 as cv
 import numpy as np
 from movingAvg import movingAVG
 
-videoPath = r'C:\Users\joaobo\Videos\No oil_Cropped.mp4'
+videoPath = r'C:\Users\joaobo\Videos\FMS K9 TEST#41_Cropped.mp4'
+
 videoName = videoPath.split('\\')[-1][:-4]
 
 
-model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\best.pt')
+model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\best YOLO s.pt')
 
 
 #choosing a medium size yolo pretrained model and loading the weights from my training
 # model = YOLO('yolov8m-seg.yaml').load('path to weights.pt')
 model.to('cuda')
 
-prediction = model.predict(videoPath,stream=True,conf = 0.2)
+prediction = model.predict(videoPath,stream=True,conf = 0.15)
 
 oilNumber = []
 for p in prediction:

@@ -4362,3 +4362,4 @@ runs/segment/train5/train_batch1.jpg
 runs/segment/train5/train_batch2.jpg
 best (1).pt
 best YOLO m.pt
+best YOLO s.pt
