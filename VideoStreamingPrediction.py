@@ -9,14 +9,14 @@ videoPath = r'C:\Users\joaobo\Videos\No oil_Cropped.mp4'
 videoName = videoPath.split('\\')[-1][:-4]
 
 
-# model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\runs\runs\segment\train2\weights\best.pt')
+model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\best.pt')
 
 
 #choosing a medium size yolo pretrained model and loading the weights from my training
-model = YOLO('yolov8m-seg.yaml').load('path to weights.pt')
+# model = YOLO('yolov8m-seg.yaml').load('path to weights.pt')
 model.to('cuda')
 
-prediction = model.predict(videoPath,stream=True,conf = 0.01)
+prediction = model.predict(videoPath,stream=True,conf = 0.2)
 
 oilNumber = []
 for p in prediction:
