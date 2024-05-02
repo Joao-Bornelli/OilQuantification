@@ -17,7 +17,7 @@ model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\best YOLO s.pt')
 # model = YOLO('yolov8m-seg.yaml').load('path to weights.pt')
 model.to('cuda')
 
-prediction = model.predict(videoPath,stream=True,conf = 0.15)
+prediction = model.predict(videoPath,stream=True,conf = 0.2,vid_stride=2,agnostic_nms=True,retina_masks =True)
 
 oilNumber = []
 for p in prediction:
