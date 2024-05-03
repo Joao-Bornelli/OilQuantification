@@ -1,7 +1,7 @@
 import cv2
 import os
 
-path = r'C:\Users\joaobo\Videos\Blurry.mp4'
+path = r'C:\Users\joaobo\Downloads\ES112.mp4'
 directory, filename = os.path.split(path)
 filename = filename[:-4]+'_Cropped.mp4'
 videoName = os.path.join(directory, filename)

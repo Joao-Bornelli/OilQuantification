@@ -1,8 +1,8 @@
 import numpy as np
 import cv2 as cv
 
-videoPath = r'C:\Users\joaobo\Videos\No oil_Cropped.mp4'
-imagesPath = r'C:\Users\joaobo\Pictures\Images'
+videoPath = r'C:\Users\joaobo\Downloads\ES112.mp4'
+imagesPath = r'C:\Users\joaobo\Pictures\Shaft2'
 
 cap = cv.VideoCapture(videoPath)
 
@@ -15,7 +15,7 @@ else:
     while True:
         ret, frame = cap.read()
         if(ret):
-            frameNum += 3
+            frameNum += 6
             cap.set(cv.CAP_PROP_POS_FRAMES,frameNum)
             frame = frame[int(roi[1]):int(roi[1]+roi[3]), int(roi[0]):int(roi[0]+roi[2])]
             cv.imshow('frame',frame)    

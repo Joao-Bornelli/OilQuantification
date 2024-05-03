@@ -6,6 +6,7 @@ import numpy as np
 from movingAvg import movingAVG
 
 videoPath = r'C:\Users\joaobo\Videos\FMS K9 TEST#41_Cropped.mp4'
+# videoPath = r'C:\Users\joaobo\Downloads\ES112_Cropped.mp4'
 
 videoName = videoPath.split('\\')[-1][:-4]
 
@@ -15,13 +16,15 @@ model = YOLO(r'C:\Users\joaobo\Documents\OilQuantification\best YOLO s.pt')
 
 #choosing a medium size yolo pretrained model and loading the weights from my training
 # model = YOLO('yolov8m-seg.yaml').load('path to weights.pt')
+
 model.to('cuda')
 
 prediction = model.predict(videoPath,stream=True,conf = 0.2,vid_stride=2,agnostic_nms=True,retina_masks =True)
 
 oilNumber = []
 for p in prediction:
-    frame = p.orig_img
+    frame = p.orig_img.copy()
+    # image = p.orig_img.copy()
     height, width = frame.shape[:2]
     masked = np.zeros((height, width), dtype=np.uint8)
     
@@ -36,7 +39,11 @@ for p in prediction:
     mask = cv.threshold(masked, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)[1]
     frame[mask==255] = (36,255,12)
     cv.imshow("frame",frame)
+    
+    # cv.imshow("cut",cv.bitwise_and(image, image, mask=mask))
     key = cv.waitKey(1)
+    
+    
     
     if(key == ord('q')):
         break
