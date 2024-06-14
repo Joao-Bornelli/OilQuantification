@@ -1,10 +1,14 @@
 import numpy as np
 import cv2 as cv
 
-videoPath = r'C:\Users\joaobo\Downloads\ES112.mp4'
-imagesPath = r'C:\Users\joaobo\Pictures\Shaft2'
+videoPath = r"C:\Users\joaobo\Downloads\Test #17.mp4"
+
+imagesPath = r'C:\Users\joaobo\Documents\OilVisualization\Images\AllResized'
+
 
 cap = cv.VideoCapture(videoPath)
+
+# print(cap.get(cv.CAP_PROP_FPS))
 
 if not cap.isOpened():
     print('error')
@@ -15,13 +19,13 @@ else:
     while True:
         ret, frame = cap.read()
         if(ret):
-            frameNum += 6
+            frameNum += 5
             cap.set(cv.CAP_PROP_POS_FRAMES,frameNum)
             frame = frame[int(roi[1]):int(roi[1]+roi[3]), int(roi[0]):int(roi[0]+roi[2])]
             cv.imshow('frame',frame)    
             if cv.waitKey(1) == ord(r'q'):
                 cap.release()
                 break
-            cv.imwrite(imagesPath+'\Frame_V2_'+str(frameNum)+'.jpg',frame)
+            cv.imwrite(imagesPath +'\Test #17_'+str(frameNum)+'.jpg',frame)
         else:
             break
